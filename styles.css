@@ -65,3 +65,22 @@ footer {
 .work-box{
     margin-bottom: 20px;
 }
+
+ul{
+    text-align: center;
+    list-style: none;
+    padding: 0;
+}
+ul li{
+    display: inline-block;
+    margin: 0 10px;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+    transform: scaleX(1.1);
+    transition: all;
+}
