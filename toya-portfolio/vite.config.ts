@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
     react(),
   ],
-  base: "https://github.com/ToyaOkey/ToyaOkey.github.io",
+  base: "/",
 })
 
 
