@@ -14,7 +14,7 @@ const projects = [
         description: "Credit Card Analysis and Prediction using Machine Learning.",
         imageUrl: "/images/credit_info.png",
         projectUrl: "/credit_info.html",
-    },
+    }
 ];
 
 const Projects = () => {
