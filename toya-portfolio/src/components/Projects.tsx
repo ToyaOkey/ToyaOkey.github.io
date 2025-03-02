@@ -13,7 +13,7 @@ const projects = [
         title: "Credit Card Prediction",
         description: "Credit Card Analysis and Prediction using Machine Learning.",
         imageUrl: "/images/credit_info.png",
-        projectUrl: "/credit-card.html",
+        projectUrl: "/credit_info.html",
     },
 ];
 
