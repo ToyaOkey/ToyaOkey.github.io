@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const Hero = () => {
     return (
-        <section className="relative flex flex-col justify-center items-center text-center h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white px-6">
+        <section id="home" className="relative flex flex-col justify-center items-center text-center h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white px-6">
 
             {/* Glowing Background Effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-transparent to-purple-500/20 blur-3xl opacity-50"></div>

@@ -16,10 +16,9 @@ const Experience = () => {
     const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
 
     useEffect(() => {
-        // Simulating an API call (useful if fetching from a server)
         setTimeout(() => {
             setExperiences(experienceData);
-        }, 500); // Simulate loading time
+        }, 500); // Simulating API fetch delay
     }, []);
 
     return (
@@ -38,35 +37,55 @@ const Experience = () => {
                 {experiences.length === 0 ? (
                     <div className="text-center text-gray-500">Loading experiences...</div>
                 ) : (
-                    <motion.div
-                        className="space-y-8"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-                        }}
-                    >
-                        {experiences.map((exp, index) => (
-                            <motion.div
-                                key={index}
-                                className="bg-white shadow-md rounded-md p-5 border-l-4 border-blue-400"
-                                variants={{
-                                    hidden: { opacity: 0, x: -20 },
-                                    visible: { opacity: 1, x: 0 },
-                                }}
-                            >
-                                <h3 className="text-xl font-semibold">{exp.role}</h3>
-                                <p className="text-gray-600">{exp.company} • {exp.date}</p>
-                                <ul className="mt-3 list-disc list-inside space-y-2 text-gray-700">
-                                    {exp.points.map((point, i) => (
-                                        <li key={i}>{point}</li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                    <div className="relative">
+                        {/* Timeline Line */}
+                        <div className="absolute top-0 left-1/2 w-1 bg-blue-500 h-full transform -translate-x-1/2"></div>
+
+                        {/* Timeline Items */}
+                        <motion.div
+                            className="grid gap-10"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
+                            }}
+                        >
+                            {experiences.map((exp, index) => (
+                                <motion.div
+                                    key={index}
+                                    className={`flex flex-col md:flex-row items-center md:items-start ${
+                                        index % 2 === 0 ? "md:flex-row-reverse" : ""
+                                    }`}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 30 },
+                                        visible: { opacity: 1, y: 0 },
+                                    }}
+                                >
+                                    {/* Experience Content */}
+                                    <div
+                                        className={`bg-white shadow-lg rounded-lg p-6 w-full md:w-5/12 border-l-4 border-blue-500 ${
+                                            index % 2 === 0 ? "md:text-right" : "md:text-left"
+                                        }`}
+                                    >
+                                        <h3 className="text-xl font-semibold">{exp.role}</h3>
+                                        <p className="text-gray-600">{exp.company} • {exp.date}</p>
+                                        <ul className="mt-3 list-disc pl-5 space-y-2 text-gray-700 marker:text-gray-700">
+                                            {exp.points.map((point, i) => (
+                                                <li key={i} className="leading-relaxed pl-2 text-left">{point}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Timeline  */}
+                                    <div className="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-full md:mx-5">
+                                        {index + 1}
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
                 )}
             </div>
         </section>
