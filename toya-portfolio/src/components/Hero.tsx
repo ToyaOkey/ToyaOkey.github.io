@@ -15,6 +15,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
+                viewport={{ once: true, amount: 0.6 }}
             >
                 Hello, I'm{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text animate-pulse">
@@ -28,6 +29,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
+                viewport={{ once: true, amount: 0.5 }}
             >
                 Developer & Cybersecurity Enthusiast
             </motion.p>
@@ -38,6 +40,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
+                viewport={{ once: true, amount: 0.6 }}
             >
                 <Link to="about" smooth={true} duration={800}>
                     <ChevronDownIcon className="w-10 h-10 text-blue-400 animate-bounce cursor-pointer transition hover:text-blue-300 hover:scale-110" />

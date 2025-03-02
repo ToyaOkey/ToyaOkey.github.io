@@ -7,7 +7,7 @@ const Navbar = () => {
     useEffect(() => {
         // Detect which section is in view
         const handleScroll = () => {
-            const sections = ["about", "projects", "contact"];
+            const sections = ["about", "experience", "projects", "contact"];
             let currentSection = "";
 
             sections.forEach((section) => {
@@ -37,7 +37,7 @@ const Navbar = () => {
 
                 {/* Desktop Navigation */}
                 <ul className="hidden md:flex space-x-8 text-lg">
-                    {["about", "projects", "contact"].map((section) => (
+                    {["about", "experience", "projects", "contact"].map((section) => (
                         <li key={section}>
                             <Link
                                 to={section}

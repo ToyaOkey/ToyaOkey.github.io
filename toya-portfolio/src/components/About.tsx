@@ -9,13 +9,22 @@ import {
     FaReact,
     FaNodeJs,
     FaGitAlt,
-    FaArrowCircleDown
+    FaArrowCircleDown,
+    FaJava,
+
+
 } from "react-icons/fa";
-import { SiTypescript, SiTailwindcss, SiMongodb } from "react-icons/si";
+
+import {RiFileExcel2Line} from "react-icons/ri";
+import { SiTypescript, SiTailwindcss, SiMongodb, SiGnubash, SiLua, SiCplusplus } from "react-icons/si";
+import { IoLogoJavascript } from "react-icons/io";
+// import { IoLogoJavascript } from "react-icons/io5";
+
+
 
 const skills = [
     { name: "Python", icon: <FaPython className="text-yellow-500" /> },
-    { name: "JavaScript", icon: <FaLaptopCode className="text-yellow-400" /> },
+    { name: "JavaScript", icon: <IoLogoJavascript className="text-yellow-400" /> },
     { name: "TypeScript", icon: <SiTypescript className="text-blue-500" /> },
     { name: "React", icon: <FaReact className="text-blue-400" /> },
     { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
@@ -24,6 +33,11 @@ const skills = [
     { name: "Git", icon: <FaGitAlt className="text-red-500" /> },
     { name: "Cybersecurity", icon: <FaLock className="text-gray-500" /> },
     { name: "SQL", icon: <FaDatabase className="text-purple-500" /> },
+    { name: "Java", icon: <FaJava className="text-red-500" /> },
+    { name: "Bash", icon: <SiGnubash className="text-gray-800" /> },
+    { name: "Excel", icon: <RiFileExcel2Line className="text-green-600" /> },
+    { name: "Lua", icon: <SiLua className="text-blue-600" /> },
+    { name: "C++", icon: <SiCplusplus className="text-blue-900" /> },
 ];
 
 const About = () => {
@@ -36,6 +50,9 @@ const About = () => {
             className="min-h-screen flex flex-col justify-center items-center text-center bg-white text-gray-900 px-6"
         >
             <div className="max-w-4xl">
+                <br/>
+                <br/>
+
                 {/* Header */}
                 <motion.h2
                     className="text-4xl font-bold mb-6 flex items-center justify-center gap-3"
@@ -55,9 +72,9 @@ const About = () => {
                 >
                     I am a Computer Science and Cybersecurity student at the University of North Carolina at Charlotte, with a passion for problem-solving, security, and innovation. I love building applications, researching cybersecurity threats, and mentoring others in technology.
                     With experience as a Lead Instructional Assistant, Undergraduate Researcher, and Developer, I’ve worked on projects ranging from marketplaces for gamers to cybersecurity learning platforms. I’m passionate about bridging the gap between security and usability, helping underrepresented communities in tech, and continuously learning to stay ahead in the field.
-                    In my free time, I enjoy working on game development, automation tools, and cybersecurity challenges. Feel free to explore my work and reach out if you’d like to collaborate! </motion.p>
+                    In my free time, I enjoy working on game development, catching up on the news, and learning about the world. Feel free to explore my work and reach out if you’d like to collaborate! </motion.p>
 
-                {/* Skills Section */}
+                {/* Skills */}
                 <motion.h3 className="text-2xl font-semibold mt-10 mb-6">Skills & Technologies</motion.h3>
 
                 <motion.div
@@ -93,7 +110,11 @@ const About = () => {
                     >
                         <FaLaptopCode className="mr-2" /> Explore My Work  <FaArrowCircleDown></FaArrowCircleDown>
                     </Link>
+
                 </motion.div>
+                <br/>
+                <br/>
+
             </div>
         </motion.section>
     );

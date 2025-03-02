@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { FaRocket } from "react-icons/fa";
+import { LuMousePointerClick } from "react-icons/lu";
 
 const projects = [
     {
@@ -25,6 +26,7 @@ const Projects = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="min-h-screen flex flex-col justify-center items-center text-center bg-gray-100 text-gray-900 px-6"
+            viewport={{ once: true, amount: 0.2 }}
         >
             <div className="max-w-6xl">
                 {/* Header */}
@@ -33,6 +35,7 @@ const Projects = () => {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
+                    viewport={{ once: true, amount: 0.2 }}
                 >
                     Projects <FaRocket className="text-blue-500" />
                 </motion.h2>
@@ -42,6 +45,7 @@ const Projects = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
+                    viewport={{ once: true, amount: 0.2 }}
                 >
                     Here are some of my recent works.
                 </motion.p>
@@ -55,8 +59,9 @@ const Projects = () => {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: index * 0.2 }}
+                            viewport={{ once: true, amount: 0.2 }}
                         >
-                            <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
+                            <img src={project.imageUrl} alt={project.title} className="w-full h-56 object-contain rounded-t-lg" />
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold text-gray-900">{project.title}</h3>
                                 <p className="text-gray-600 mt-2">{project.description}</p>
@@ -66,7 +71,7 @@ const Projects = () => {
                                     rel="noopener noreferrer"
                                     className="mt-3 inline-block text-blue-500 hover:text-blue-700 transition font-medium"
                                 >
-                                    View Project →
+                                    View Project <LuMousePointerClick className="inline w-5 h-8"></LuMousePointerClick>
                                 </a>
                             </div>
                         </motion.div>
@@ -79,6 +84,7 @@ const Projects = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7, duration: 0.6 }}
+                    viewport={{ once: true, amount: 0.5 }}
                 >
                     <Link
                         to="contact"
