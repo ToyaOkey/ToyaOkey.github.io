@@ -90,7 +90,7 @@ const Projects = () => {
                         to="contact"
                         smooth={true}
                         duration={800}
-                        className="inline-flex items-center px-6 py-3 text-lg font-semibold rounded-lg shadow-lg bg-black text-white transition transform hover:scale-105 hover:shadow-xl"
+                        className="inline-flex items-center px-6 py-3 mb-3 text-lg font-semibold rounded-lg shadow-lg bg-black text-white transition transform hover:scale-105 hover:shadow-xl"
                     >
                         Let's Connect 🚀
                     </Link>
