@@ -2,28 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { FaRocket } from "react-icons/fa";
 import { LuMousePointerClick } from "react-icons/lu";
+import projectData from "../data/projectData.json";
 
-const projects = [
-    {
-        title: "S&P 500 Stock Price Analysis",
-        description: "First data mining project to analyze the S&P 500 stock prices.",
-        imageUrl: "/images/stock_market.png",
-        projectUrl: "/s&p500view.html",
-    },
-    {
-        title: "Credit Card Prediction",
-        description: "Credit Card Analysis and Prediction using Machine Learning.",
-        imageUrl: "/images/credit_info.png",
-        projectUrl: "/credit_info.html",
-    },
-    {
-        "title": "Housing Price Prediction",
-        "description": "Housing Price Prediction using Regression Models.",
-        "imageUrl": "/images/house_price.png",
-        "projectUrl": "/house_info.html",
-    }
-
-];
+const projects= projectData;
 
 const Projects = () => {
     return (

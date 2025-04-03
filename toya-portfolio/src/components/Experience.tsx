@@ -15,7 +15,7 @@ const Experience = () => {
     useEffect(() => {
         setTimeout(() => {
             setExperiences(experienceData);
-        }, 500); // Simulating API fetch delay
+        }, 500);
     }, []);
 
     return (
