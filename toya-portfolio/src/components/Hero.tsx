@@ -19,7 +19,7 @@ const Hero = () => {
             >
                 Hello, I'm{" "}
                 <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text animate-pulse">
-          Toya-Okey-Nwamara
+          Toya Okey-Nwamara
         </span>
             </motion.h1>
 
