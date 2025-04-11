@@ -62,7 +62,7 @@ const Contact = () => {
                     </a>
                 </motion.div>
 
-                {/* Optional Contact Form */}
+                 {/*Optional Contact Form*/}
                 <motion.form
                     className="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md mx-auto"
                     initial={{ opacity: 0, y: 10 }}
@@ -97,6 +97,8 @@ const Contact = () => {
                         Send Message 🚀
                     </button>
                 </motion.form>
+                {/*<a href="mailto:sorozcob@charlotte.edu">Contact</a>*/}
+                {/*https://react.email/docs/integrations/resend*/}
 
                 {/* Copyright */}
                 <p className="text-gray-500 text-sm mt-6">
