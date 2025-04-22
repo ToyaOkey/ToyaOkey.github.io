@@ -1,6 +1,7 @@
 import {useState, useRef, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import * as React from "react";
 
 const Contact = () => {
     const [submitted, setSubmitted] = useState(false);
