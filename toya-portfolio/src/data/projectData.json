@@ -1,0 +1,27 @@
+[
+  {
+    "title": "S&P 500 Stock Price Analysis",
+    "description": "First data mining project to analyze the S&P 500 stock prices.",
+    "imageUrl": "/images/stock_market.png",
+    "projectUrl": "/s&p500view.html"
+  },
+  {
+    "title": "Credit Card Prediction",
+    "description": "Credit Card Analysis and Prediction using Machine Learning.",
+    "imageUrl": "/images/credit_info.png",
+    "projectUrl": "/credit_info.html"
+  },
+  {
+    "title": "Housing Price Prediction",
+    "description": "Housing Price Prediction using Regression Models.",
+    "imageUrl": "/images/house_price.png",
+    "projectUrl": "/house_info.html"
+  },
+  {
+    "title": "College Major Cluster Analysis",
+    "description": "Using Clustering to predict the outcome of different college majors.",
+    "imageUrl": "/images/college_majors.png",
+    "projectUrl": "college_majors.html"
+  }
+
+]

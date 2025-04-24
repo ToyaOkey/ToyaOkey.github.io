@@ -1,0 +1,43 @@
+[
+  {
+    "role": "Lead Instructional Assistant",
+    "company": "UNC Charlotte",
+    "date": "Jan 2024 - Present",
+    "points": [
+      "Instructed a diverse body of 1000+ students in object oriented programming and data structures",
+      "Mostly weekly meetings leading instructional assistants for efficient course delivery",
+      "Co-developed automated grading tools to streamline the grading process",
+      "Designed and developed course textbook using HTML, PreText, and Python"
+    ]
+  },
+  {
+    "role": "Undergraduate Research Assistant",
+    "company": "UNC Charlotte",
+    "date": "August 2023 - December 2024",
+    "points": [
+      "Collaborated on research methods for underrepresented computer science communities",
+      "Initiated recruitment for central communication enhancing coordination and information flow",
+      "Interviewed 20+ digital forensics professionals in analyzing cybersecurity tools"
+    ]
+  },
+  {
+    "role": "Preceptor/Peer Mentor",
+    "company": "UNC Charlotte",
+    "date": "August 2023 - December 2023",
+    "points": [
+      "Led weekly study sessions for 20+ students, aiding in their understanding of computer science concepts",
+      "Provided support and guidance to students in a variety of computer science courses",
+      "Collaborated with faculty to develop engaging and interactive learning materials"
+    ]
+  },
+  {
+    "role": "Instructional Assistant",
+    "company": "UNC Charlotte",
+    "date": "Jan 2023 - December 2023",
+    "points": [
+      "Assisted in the development of course materials and assessments for computer science courses",
+      "Provided support to students in understanding complex computer science concepts",
+      "Graded assignments and exams, providing feedback to students to aid in their learning"
+    ]
+  }
+]
