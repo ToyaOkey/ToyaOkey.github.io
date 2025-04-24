@@ -16,7 +16,7 @@ const Projects = () => {
             className="min-h-screen flex flex-col justify-center items-center text-center bg-gray-100 text-gray-900 px-6"
             viewport={{ once: true, amount: 0.2 }}
         >
-            <div className="max-w-6xl">
+            <div className="max-w-6xl mt-4.5">
                 {/* Header */}
                 <motion.h2
                     className="text-4xl font-bold mb-4 flex items-center justify-center gap-2"
@@ -24,6 +24,7 @@ const Projects = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                     viewport={{ once: true, amount: 0.2 }}
+
                 >
                     Projects <FaRocket className="text-blue-500" />
                 </motion.h2>
@@ -78,9 +79,10 @@ const Projects = () => {
                         to="contact"
                         smooth={true}
                         duration={800}
-                        className="inline-flex items-center px-6 py-3 mb-3 text-lg font-semibold rounded-lg shadow-lg bg-black text-white transition transform hover:scale-105 hover:shadow-xl"
+                        className="inline-flex items-center px-6 py-3 mb-5 text-lg font-semibold rounded-lg shadow-lg bg-black text-white transition transform hover:scale-105 hover:shadow-xl"
+                        offset={-50}
                     >
-                        Let's Connect 🚀
+                        Let's Connect! <FaRocket className="ml-2"/>
                     </Link>
                 </motion.div>
             </div>

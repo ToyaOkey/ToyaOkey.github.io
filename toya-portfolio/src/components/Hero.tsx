@@ -42,7 +42,7 @@ const Hero = () => {
                 transition={{ delay: 0.6, duration: 0.6 }}
                 viewport={{ once: true, amount: 0.6 }}
             >
-                <Link to="about" smooth={true} duration={800}>
+                <Link to="about" smooth={true} duration={800} offset={-50}>
                     <ChevronDownIcon className="w-10 h-10 text-blue-400 animate-bounce cursor-pointer transition hover:text-blue-300 hover:scale-110" />
                 </Link>
             </motion.div>

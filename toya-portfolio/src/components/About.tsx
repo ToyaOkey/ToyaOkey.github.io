@@ -21,7 +21,7 @@ import { IoLogoJavascript } from "react-icons/io";
 
 
 const skills = [
-    { name: "Python", icon: <FaPython className="text-yellow-500" /> },
+    { name: "Python", icon: <FaPython className="text-blue-500" /> },
     { name: "JavaScript", icon: <IoLogoJavascript className="text-yellow-400" /> },
     { name: "TypeScript", icon: <SiTypescript className="text-blue-500" /> },
     { name: "React", icon: <FaReact className="text-blue-400" /> },
@@ -105,6 +105,7 @@ const About = () => {
                         smooth={true}
                         duration={800}
                         className="inline-flex items-center px-6 py-3 text-lg font-semibold rounded-lg shadow-lg bg-black text-white transition transform hover:scale-105 hover:shadow-xl"
+                        offset={-50}
                     >
                         <FaLaptopCode className="mr-2" /> Explore My Work  <FaArrowCircleDown></FaArrowCircleDown>
                     </Link>

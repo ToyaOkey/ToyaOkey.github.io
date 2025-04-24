@@ -58,7 +58,7 @@ const Navbar = () => {
                                 smooth={true}
                                 duration={800}
                                 spy={true}
-                                offset={-70}
+                                offset={-50}
                                 className={`cursor-pointer px-4 py-2 rounded-lg transition ${
                                     activeSection === section
                                         ? "bg-blue-300 text-white font-semibold shadow-md"
