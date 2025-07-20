@@ -22,6 +22,12 @@
     "description": "Using Clustering to predict the outcome of different college majors.",
     "imageUrl": "/images/college_majors.png",
     "projectUrl": "college_majors.html"
+  },
+  {
+    "title": "Social Media Analysis - Group Project",
+    "description": "Analyzing social media data to understand user behavior and trends.",
+    "imageUrl": "/images/social_media.png",
+    "projectUrl": "/social_media.html"
   }
 
 ]
