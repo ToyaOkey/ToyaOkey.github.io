@@ -99,18 +99,18 @@ const Contact = () => {
             {/* Section Divider Effect */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
             
-            <div className="max-w-4xl w-full">
+            <div className="max-w-4xl w-full px-4">
                 <motion.h2
-                    className="text-4xl font-bold mb-6"
+                    className="text-3xl sm:text-4xl font-bold mb-4 md:mb-6"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                 >
-                    Let's Connect! <FaEnvelope className="inline text-blue-400" />
+                    Let's Connect! <FaEnvelope className="inline text-blue-400 text-2xl sm:text-3xl md:text-4xl" />
                 </motion.h2>
 
                 <motion.p
-                    className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed"
+                    className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 md:mb-8 leading-relaxed"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
@@ -119,18 +119,18 @@ const Contact = () => {
                 </motion.p>
 
                 <motion.div
-                    className="flex justify-center space-x-6 text-3xl mb-8"
+                    className="flex justify-center space-x-4 md:space-x-6 text-2xl sm:text-3xl mb-6 md:mb-8"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7, duration: 0.6 }}
                 >
-                    <a href="https://github.com/ToyaOkey" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition transform hover:scale-110">
+                    <a href="https://github.com/ToyaOkey" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition transform hover:scale-110 active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation" aria-label="GitHub">
                         <FaGithub />
                     </a>
-                    <a href="https://www.linkedin.com/in/toyaokey/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition transform hover:scale-110">
+                    <a href="https://www.linkedin.com/in/toyaokey/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition transform hover:scale-110 active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation" aria-label="LinkedIn">
                         <FaLinkedin />
                     </a>
-                    <a href="mailto:toyaokey6@gmail.com" className="text-gray-400 hover:text-blue-400 transition transform hover:scale-110">
+                    <a href="mailto:toyaokey6@gmail.com" className="text-gray-400 hover:text-blue-400 transition transform hover:scale-110 active:scale-95 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation" aria-label="Email">
                         <FaEnvelope />
                     </a>
                 </motion.div>
@@ -144,7 +144,7 @@ const Contact = () => {
                     method="POST"
                     target="hidden_iframe"
                     onSubmit={handleSubmit}
-                    className="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md mx-auto"
+                    className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg w-full max-w-md mx-auto"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9, duration: 0.6 }}
@@ -155,7 +155,9 @@ const Contact = () => {
                         name="name"
                         required
                         placeholder="Your Name"
-                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
+                        autoComplete="name"
+                        inputMode="text"
+                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 min-h-[44px]"
                     />
 
                     <label className="block text-left text-gray-200 text-base font-semibold mb-1">Email</label>
@@ -164,7 +166,9 @@ const Contact = () => {
                         name="email"
                         required
                         placeholder="Your Email"
-                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
+                        autoComplete="email"
+                        inputMode="email"
+                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 min-h-[44px]"
                     />
 
                     <label className="block text-left text-gray-200 text-base font-semibold mb-1">Message</label>
@@ -173,12 +177,14 @@ const Contact = () => {
                         required
                         rows={4}
                         placeholder="Your Message"
-                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 resize-none"
+                        autoComplete="off"
+                        inputMode="text"
+                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 resize-none min-h-[120px]"
                     ></textarea>
 
                     <button
                         type="submit"
-                        className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-bold py-2 rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition transform hover:scale-105 shadow-lg text-base"
+                        className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-bold py-3 md:py-2 rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition transform hover:scale-105 active:scale-95 shadow-lg text-base min-h-[44px] touch-manipulation"
                         style={{ color: '#ffffff' }}
                     >
                         Send Message <FaPaperPlane className="inline w-4 h-4 ml-2 text-white" />   

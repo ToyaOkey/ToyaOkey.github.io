@@ -208,18 +208,18 @@ const Projects = () => {
                 {/* Tech Stack Filter */}
                 {allTechStacks.length > 0 && (
                     <motion.div
-                        className="mb-6"
+                        className="mb-4 md:mb-6 px-4"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7, duration: 0.6 }}
                     >
-                        <p className="text-sm text-gray-600 mb-2 font-medium">Filter by Technology:</p>
-                        <div className="flex flex-wrap gap-2 justify-center">
+                        <p className="text-xs md:text-sm text-gray-600 mb-2 font-medium text-center md:text-left">Filter by Technology:</p>
+                        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                             {allTechStacks.map((tech) => (
                                 <button
                                     key={tech}
                                     onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
-                                    className={`px-3 py-1 text-xs font-semibold rounded-full transition-all transform hover:scale-105 ${
+                                    className={`px-2.5 md:px-3 py-1.5 md:py-1 text-xs font-semibold rounded-full transition-all transform hover:scale-105 active:scale-95 min-h-[36px] md:min-h-[32px] touch-manipulation ${
                                         selectedTech === tech
                                             ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md"
                                             : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -231,7 +231,7 @@ const Projects = () => {
                             {selectedTech && (
                                 <button
                                     onClick={() => setSelectedTech(null)}
-                                    className="px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition-all transform hover:scale-105"
+                                    className="px-2.5 md:px-3 py-1.5 md:py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition-all transform hover:scale-105 active:scale-95 min-h-[36px] md:min-h-[32px] touch-manipulation"
                                 >
                                     Clear Filter
                                 </button>
@@ -242,26 +242,27 @@ const Projects = () => {
 
                 {/* Search Bar */}
                 <motion.div
-                    className="mb-8 max-w-md mx-auto"
+                    className="mb-6 md:mb-8 max-w-md mx-auto px-4"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7, duration: 0.6 }}
                 >
                     <div className="relative">
-                        <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <FaSearch className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm md:text-base" />
                         <input
                             type="text"
                             placeholder={`Search ${activeTab === "research" ? "research" : "software"} projects...`}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-gray-900 bg-white shadow-md"
+                            className="w-full pl-10 md:pl-12 pr-10 md:pr-4 py-2.5 md:py-3 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-gray-900 bg-white shadow-md text-sm md:text-base min-h-[44px]"
                         />
                         {searchQuery && (
                             <button
                                 onClick={() => setSearchQuery("")}
-                                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
+                                aria-label="Clear search"
                             >
-                                ✕
+                                <FaTimes className="text-sm md:text-base" />
                             </button>
                         )}
                     </div>
@@ -282,7 +283,7 @@ const Projects = () => {
                             </motion.div>
                         ) : (
                             <motion.div
-                                className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center"
+                                className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 justify-center px-4 md:px-0"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
@@ -365,7 +366,7 @@ const Projects = () => {
                             </motion.div>
                         ) : (
                             <motion.div
-                                className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center"
+                                className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 justify-center px-4 md:px-0"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}

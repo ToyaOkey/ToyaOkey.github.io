@@ -14,6 +14,11 @@ import {
     FaJava,
     FaHandPaper,
     FaStar,
+    FaCode,
+    FaShieldAlt,
+    FaGraduationCap,
+    FaLightbulb,
+    FaRocket,
 } from "react-icons/fa";
 
 import {RiFileExcel2Line} from "react-icons/ri";
@@ -94,33 +99,136 @@ const About = () => {
             {/* Section Divider Effect */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
             
-            <div className="max-w-4xl">
+            <div className="max-w-6xl w-full">
                 <br/>
                 <br/>
 
                 {/* Header */}
                 <motion.h2
-                    className="text-4xl font-bold mb-6 flex items-center justify-center gap-3"
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 flex flex-wrap items-center justify-center gap-2 md:gap-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent px-4"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                 >
-                    <FaUserAstronaut className="text-blue-500" /> About Me <FaHandPaper className="text-blue-500" />
+                    <FaUserAstronaut className="text-blue-500 text-2xl sm:text-3xl md:text-4xl" /> 
+                    <span className="text-center">About Me</span>
+                    <FaHandPaper className="text-blue-500 text-2xl sm:text-3xl md:text-4xl" />
                 </motion.h2>
 
-                {/* Description */}
-                <motion.p
-                    className="text-lg md:text-xl text-gray-800 leading-relaxed max-w-3xl mx-auto mb-8 font-medium"
+                {/* Description - Improved Formatting */}
+                <motion.div
+                    className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8 md:mb-12 space-y-3 md:space-y-4 px-4"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
                 >
-                    I am a Computer Science and Cybersecurity student at the University of North Carolina at Charlotte, with a passion for problem-solving, security, and innovation. I love building applications, researching cybersecurity threats, and mentoring others in technology.
-                    With experience as a Lead Instructional Assistant, Undergraduate Researcher, and Developer, I've worked on projects ranging from marketplaces for gamers to cybersecurity learning platforms. I'm passionate about bridging the gap between security and usability, helping underrepresented communities in tech, and continuously learning to stay ahead in the field.
-                    In my free time, I enjoy working on game development, catching up on the news, and learning about the world. Feel free to explore my work and reach out if you'd like to collaborate! </motion.p>
+                    <p className="font-medium">
+                        I am a <span className="font-bold text-blue-600">Computer Science and Cybersecurity</span> student at the <span className="font-semibold text-purple-600">University of North Carolina at Charlotte</span>, with a passion for problem-solving, security, and innovation.
+                    </p>
+                    <p>
+                        With experience as a <span className="font-semibold text-blue-600">Lead Instructional Assistant</span>, <span className="font-semibold text-purple-600">Undergraduate Researcher</span>, and <span className="font-semibold text-pink-600">Developer</span>, I've worked on projects ranging from marketplaces for gamers to cybersecurity learning platforms. I'm passionate about bridging the gap between security and usability, helping underrepresented communities in tech, and continuously learning to stay ahead in the field.
+                    </p>
+                    <p className="text-gray-600 italic">
+                        In my free time, I enjoy working on game development, catching up on the news, and learning about the world. Feel free to explore my work and reach out if you'd like to collaborate!
+                    </p>
+                </motion.div>
+
+                {/* What I Do Section */}
+                <motion.div
+                    className="mb-8 md:mb-12 px-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 md:mb-6 text-gray-800 text-center">What I Do</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                        {[
+                            {
+                                icon: <FaCode className="text-3xl" />,
+                                title: "Development",
+                                description: "Building full-stack applications with modern technologies",
+                                color: "from-blue-500 to-blue-600"
+                            },
+                            {
+                                icon: <FaShieldAlt className="text-3xl" />,
+                                title: "Cybersecurity",
+                                description: "Researching threats and building secure systems",
+                                color: "from-purple-500 to-purple-600"
+                            },
+                            {
+                                icon: <FaGraduationCap className="text-3xl" />,
+                                title: "Mentoring",
+                                description: "Teaching and guiding others in technology",
+                                color: "from-pink-500 to-pink-600"
+                            },
+                            {
+                                icon: <FaLightbulb className="text-3xl" />,
+                                title: "Innovation",
+                                description: "Creating solutions that bridge security and usability",
+                                color: "from-teal-500 to-teal-600"
+                            }
+                        ].map((item, index) => (
+                            <motion.div
+                                key={index}
+                                className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-blue-300"
+                                whileHover={{ scale: 1.05, y: -5 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                            >
+                                <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${item.color} text-white mb-4 group-hover:scale-110 transition-transform`}>
+                                    {item.icon}
+                                </div>
+                                <h4 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h4>
+                                <p className="text-gray-600 text-sm">{item.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Key Highlights */}
+                <motion.div
+                    className="mb-8 md:mb-12 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 rounded-xl md:rounded-2xl p-4 md:p-8 border border-blue-200 mx-4 md:mx-0"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.7, duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-4 md:mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-2">
+                        <FaRocket className="text-blue-500" /> <span>Key Highlights</span>
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                        {[
+                            "Lead Instructional Assistant",
+                            "Undergraduate Researcher",
+                            "Full-Stack Developer"
+                        ].map((highlight, index) => (
+                            <motion.div
+                                key={index}
+                                className="bg-white rounded-lg p-4 shadow-md border-l-4 border-blue-500"
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.8 + index * 0.1 }}
+                                viewport={{ once: true }}
+                            >
+                                <p className="font-semibold text-gray-800">{highlight}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
 
                 {/* Skills */}
-                <motion.h3 className="text-2xl font-semibold mt-10 mb-8">Skills & Technologies</motion.h3>
+                <motion.h3 
+                    className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-gray-800 text-center px-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8, duration: 0.6 }}
+                    viewport={{ once: true }}
+                >
+                    Skills & Technologies
+                </motion.h3>
 
                 <div className="space-y-8">
                     {skillCategories.map((category, catIndex) => (
@@ -135,7 +243,7 @@ const About = () => {
                             <h4 className="text-lg font-semibold text-gray-700 mb-4 text-left">
                                 {category.name}
                             </h4>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 px-4">
                                 {category.skills.map((skill, index) => (
                                     <motion.div
                                         key={index}
@@ -203,11 +311,11 @@ const About = () => {
                         to="projects"
                         smooth={true}
                         duration={800}
-                        className="inline-flex items-center px-4 py-2 text-base font-bold rounded-lg shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white transition transform hover:scale-105 hover:shadow-xl"
+                        className="inline-flex items-center justify-center px-6 py-3 min-h-[44px] text-base font-bold rounded-lg shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white transition transform hover:scale-105 hover:shadow-xl active:scale-95 touch-manipulation"
                         style={{ color: '#ffffff' }}
                         offset={-50}
                     >
-                        <FaLaptopCode className="mr-2 text-white" /> Explore My Work  <FaArrowCircleDown className="text-white"></FaArrowCircleDown>
+                        <FaLaptopCode className="mr-2 text-white" /> Explore My Work  <FaArrowCircleDown className="text-white ml-2"></FaArrowCircleDown>
                     </Link>
 
                 </motion.div>

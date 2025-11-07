@@ -209,8 +209,10 @@ const Navbar = () => {
                 <div className="md:hidden">
                     <motion.button 
                         onClick={toggleMenu} 
-                        className="text-white focus:outline-none p-2"
+                        className="text-white focus:outline-none p-3 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
                         whileTap={{ scale: 0.9 }}
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={isMenuOpen}
                     >
                         {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
                     </motion.button>
@@ -225,7 +227,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-md border-t border-gray-800 overflow-hidden"
+                        className="md:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-md border-t border-gray-800 overflow-hidden z-50 max-h-[calc(100vh-80px)] overflow-y-auto"
                     >
                         <ul className="flex flex-col space-y-2 py-4 px-6">
                             {navItems.map((item, index) => (
