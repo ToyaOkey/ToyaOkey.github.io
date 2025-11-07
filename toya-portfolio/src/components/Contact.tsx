@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaCheckCircle } from "react-icons/fa";
 import * as React from "react";
 
 const Contact = () => {
@@ -14,7 +14,69 @@ const Contact = () => {
             formRef.current.submit();
             setSubmitted(true);
             formRef.current.reset();
+            
+            // Confetti animation
+            triggerConfetti();
         }
+    };
+
+    const triggerConfetti = () => {
+        const colors = ['#3b82f6', '#a855f7', '#ec4899', '#60a5fa', '#f472b6'];
+        const confettiCount = 100;
+        const duration = 3000;
+        
+        const createConfetti = () => {
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    const startX = Math.random() * window.innerWidth;
+                    confetti.style.left = startX + 'px';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '9999';
+                    confetti.style.opacity = '0.8';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    const angle = Math.random() * 360;
+                    const velocity = 5 + Math.random() * 5;
+                    const xVelocity = Math.cos(angle * Math.PI / 180) * velocity;
+                    const yVelocity = Math.sin(angle * Math.PI / 180) * velocity;
+                    
+                    let x = startX;
+                    let y = -10;
+                    const rotation = Math.random() * 360;
+                    let rotationSpeed = (Math.random() - 0.5) * 10;
+                    
+                    const animate = () => {
+                        x += xVelocity;
+                        y += yVelocity + 2; // gravity
+                        rotationSpeed += 0.5;
+                        
+                        confetti.style.left = x + 'px';
+                        confetti.style.top = y + 'px';
+                        confetti.style.transform = `rotate(${rotation + rotationSpeed}deg)`;
+                        
+                        if (y < window.innerHeight + 100) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            confetti.remove();
+                        }
+                    };
+                    
+                    requestAnimationFrame(animate);
+                    
+                    setTimeout(() => confetti.remove(), duration);
+                }, i * 10);
+            }
+        };
+        
+        createConfetti();
     };
 
     useEffect(() => {
@@ -32,8 +94,11 @@ const Contact = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="min-h-screen flex flex-col justify-center items-center text-center bg-gray-900 text-white px-6"
+            className="min-h-screen flex flex-col justify-center items-center text-center bg-gray-900 text-white px-6 relative"
         >
+            {/* Section Divider Effect */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+            
             <div className="max-w-4xl w-full">
                 <motion.h2
                     className="text-4xl font-bold mb-6"
@@ -41,11 +106,11 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
                 >
-                    Let's Connect! 📩
+                    Let's Connect! <FaEnvelope className="inline text-blue-400" />
                 </motion.h2>
 
                 <motion.p
-                    className="text-lg text-gray-400 mb-8"
+                    className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
@@ -84,38 +149,39 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9, duration: 0.6 }}
                 >
-                    <label className="block text-left text-gray-300 text-sm font-semibold">Name</label>
+                    <label className="block text-left text-gray-200 text-base font-semibold mb-1">Name</label>
                     <input
                         type="text"
                         name="name"
                         required
                         placeholder="Your Name"
-                        className="w-full p-3 mt-2 mb-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-blue-400"
+                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
                     />
 
-                    <label className="block text-left text-gray-300 text-sm font-semibold">Email</label>
+                    <label className="block text-left text-gray-200 text-base font-semibold mb-1">Email</label>
                     <input
                         type="email"
                         name="email"
                         required
                         placeholder="Your Email"
-                        className="w-full p-3 mt-2 mb-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-blue-400"
+                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
                     />
 
-                    <label className="block text-left text-gray-300 text-sm font-semibold">Message</label>
+                    <label className="block text-left text-gray-200 text-base font-semibold mb-1">Message</label>
                     <textarea
                         name="message"
                         required
                         rows={4}
                         placeholder="Your Message"
-                        className="w-full p-3 mt-2 mb-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-blue-400"
+                        className="w-full p-3.5 mt-2 mb-4 rounded-lg bg-gray-700 text-white text-base border-2 border-gray-600 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 resize-none"
                     ></textarea>
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition transform hover:scale-105"
+                        className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-bold py-2 rounded-lg hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition transform hover:scale-105 shadow-lg text-base"
+                        style={{ color: '#ffffff' }}
                     >
-                        Send Message 🚀
+                        Send Message <FaPaperPlane className="inline w-4 h-4 ml-2 text-white" />   
                     </button>
 
 
@@ -129,17 +195,14 @@ const Contact = () => {
                                     exit={{ opacity: 0, y: -10 }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <h3 className="text-xl font-bold mb-2">Thank you! 🎉</h3>
-                                    <p className="text-sm">Your message has been sent. I'll get back to you soon!</p>
+                                    <h3 className="text-xl font-bold mb-2 flex items-center justify-center gap-2">Thank you! <FaCheckCircle className="text-green-300" /></h3>
+                                    <p className="text-base">Your message has been sent. I'll get back to you soon!</p>
                                 </motion.div>
                             )}
                         </AnimatePresence>
 
                 </motion.form>
 
-                <p className="text-gray-500 text-sm mt-6">
-                    © {new Date().getFullYear()} Toya Okey-Nwamara. All Rights Reserved.
-                </p>
             </div>
         </motion.section>
     );
