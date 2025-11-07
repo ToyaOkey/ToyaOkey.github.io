@@ -23,9 +23,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: 'npm'
+          cache-dependency-path: toya-portfolio/package-lock.json
 
-      - name: Install deps
+      - name: Install dependencies
+        working-directory: ./toya-portfolio
         run: |
           if [ -f package-lock.json ]; then
             npm ci
@@ -34,17 +36,26 @@ jobs:
           fi
 
       - name: Build
+        working-directory: ./toya-portfolio
         run: npm run build
 
       - name: Prepare Pages artifact
+        working-directory: ./toya-portfolio
         run: |
+          # Copy index.html to 404.html for SPA routing
           cp dist/index.html dist/404.html
-          echo "toyaokey.com" > CNAME     # or 'www.toyaokey.com' if that's your canonical
+          # Copy CNAME file if it exists in root, otherwise create it
+          if [ -f ../CNAME ]; then
+            cp ../CNAME dist/CNAME
+          else
+            echo "toyaokey.com" > dist/CNAME
+          fi
+          # Create .nojekyll to disable Jekyll processing
           touch dist/.nojekyll
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: toya-portfolio/dist
 
   deploy:
     needs: build
