@@ -1,5 +1,15 @@
 [
   {
+    "role": "Tech Fellow",
+    "company": "CodePath",
+    "date": "July 2025 - Present",
+    "points": [
+      "Initiated weekly interview prep labs for computer science students, focusing on data structures",
+      "Led dynamic breakout sessions to promote collaboration and encourage active student participation",
+      "Designed and facilitated hands-on coding drills, reinforcing best practices in debugging and efficiency"
+    ]
+  },
+  {
     "role": "Lead Instructional Assistant",
     "company": "UNC Charlotte",
     "date": "Jan 2024 - Present",
@@ -8,6 +18,15 @@
       "Mostly weekly meetings leading instructional assistants for efficient course delivery",
       "Co-developed automated grading tools to streamline the grading process",
       "Designed and developed course textbook using HTML, PreText, and Python"
+    ]
+  },
+  {
+    "role": "Technology Consultant Intern",
+    "company": "Protiviti",
+    "date": "May 2025 - August 2025",
+    "points": [
+      "Supported enterprise cybersecurity and technology consulting initiatives, contributing to risk assessments, compliance reviews, and process improvements across hybrid client environments",
+      "Strengthened technical and communication skills through collaborative, solution-driven project work"
     ]
   },
   {
