@@ -1,6 +1,6 @@
 [
   {
-    "title": "Restaurant Order API",
+    "title": "Restaurant Orderering System",
     "description": [
       "Developed a full-stack restaurant management system that allows customers to browse menus, place orders, and track their order status in real time",
       "The platform enables restaurant staff to manage inventory, update menus, and monitor incoming requests through a secure admin dashboard",
@@ -22,7 +22,7 @@
     ],
     "icon": "FaLeaf",
     "projectUrl": "https://github.com/ToyaOkey/eco-commute",
-    "techStack": ["React", "Tailwind CSS", "JavaScript", "AI/ML", "Maps API"]
+    "techStack": ["React", "Tailwind CSS", "JavaScript", "AI/ML", "FastAPI"]
   },
   {
     "title": "Black Ice Tips",
@@ -30,7 +30,6 @@
       "Developed a full-stack coaching marketplace for Rainbow Six Siege players to sell tips and services",
       "Built with Node.js, MongoDB, EJS, and Express",
       "Enabled user profiles, session listings, and secure login",
-      "Increased user engagement by streamlining the coaching request process",
       "Designed with scalability and community-driven support in mind"
     ],
     "icon": "FaGamepad",
@@ -51,7 +50,7 @@
   {
     "title": "Interactive CS Textbook",
     "description": [
-      "Migrated and extended an open-source Runestone textbook to XML-based PreTeXt",
+      "Migrated and extended an Open Source Runestone textbook to XML-based PreTeXt",
       "Converted RST content to PreTeXt format with coding challenges and auto-graded assessments"
     ],
     "icon": "FaBook",

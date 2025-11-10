@@ -19,6 +19,9 @@ import {
     FaGraduationCap,
     FaLightbulb,
     FaRocket,
+    FaChalkboardTeacher,
+    FaFlask,
+    FaLayerGroup,
 } from "react-icons/fa";
 
 import {RiFileExcel2Line} from "react-icons/ri";
@@ -190,30 +193,112 @@ const About = () => {
 
                 {/* Key Highlights */}
                 <motion.div
-                    className="mb-8 md:mb-12 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 rounded-xl md:rounded-2xl p-4 md:p-8 border border-blue-200 mx-4 md:mx-0"
+                    className="mb-8 md:mb-12 px-4"
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.7, duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    <h3 className="text-xl sm:text-2xl font-semibold mb-4 md:mb-6 text-gray-800 flex items-center justify-center md:justify-start gap-2">
-                        <FaRocket className="text-blue-500" /> <span>Key Highlights</span>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-gray-800 flex items-center justify-center gap-3">
+                        <motion.div
+                            animate={{ rotate: [0, 10, -10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                        >
+                            <FaRocket className="text-blue-500 text-2xl sm:text-3xl" />
+                        </motion.div>
+                        <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Key Highlights</span>
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                         {[
-                            "Lead Instructional Assistant",
-                            "Undergraduate Researcher",
-                            "Full-Stack Developer"
+                            {
+                                title: "Lead Instructional Assistant",
+                                description: "Mentoring students and facilitating learning in computer science courses",
+                                icon: <FaChalkboardTeacher className="text-3xl" />,
+                                color: "from-blue-500 to-blue-600",
+                                borderColor: "border-blue-500",
+                                bgGradient: "from-blue-50 to-blue-100",
+                                stat: "100+"
+                            },
+                            {
+                                title: "Undergraduate Researcher",
+                                description: "Conducting research in cybersecurity and contributing to academic publications",
+                                icon: <FaFlask className="text-3xl" />,
+                                color: "from-purple-500 to-purple-600",
+                                borderColor: "border-purple-500",
+                                bgGradient: "from-purple-50 to-purple-100",
+                                stat: "Active"
+                            },
+                            {
+                                title: "Full-Stack Developer",
+                                description: "Building end-to-end applications with modern web technologies",
+                                icon: <FaLayerGroup className="text-3xl" />,
+                                color: "from-pink-500 to-pink-600",
+                                borderColor: "border-pink-500",
+                                bgGradient: "from-pink-50 to-pink-100",
+                                stat: "5+"
+                            }
                         ].map((highlight, index) => (
                             <motion.div
                                 key={index}
-                                className="bg-white rounded-lg p-4 shadow-md border-l-4 border-blue-500"
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.8 + index * 0.1 }}
+                                className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-200 hover:border-blue-400 overflow-hidden flex flex-col h-full"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                whileHover={{ scale: 1.03, y: -5 }}
+                                transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
                                 viewport={{ once: true }}
                             >
-                                <p className="font-semibold text-gray-800">{highlight}</p>
+                                {/* Animated background gradient on hover */}
+                                <motion.div
+                                    className={`absolute inset-0 bg-gradient-to-br ${highlight.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-0`}
+                                />
+                                
+                                {/* Decorative corner accent */}
+                                <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${highlight.color} opacity-10 rounded-bl-full -z-0`} />
+                                
+                                <div className="relative z-10">
+                                    {/* Icon with gradient background */}
+                                    <motion.div
+                                        className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${highlight.color} text-white mb-4 shadow-md group-hover:shadow-lg`}
+                                        whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
+                                        transition={{ duration: 0.5 }}
+                                    >
+                                        {highlight.icon}
+                                    </motion.div>
+                                    
+                                    {/* Title */}
+                                    <h4 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                        {highlight.title}
+                                    </h4>
+                                    
+                                    {/* Description */}
+                                    <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                                        {highlight.description}
+                                    </p>
+                                    
+                                    {/* Highlight Bar */}
+                                    <div className="relative mt-auto pt-6 pb-2">
+                                        {/* Background bar */}
+                                        <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${highlight.color} opacity-20 rounded-full`} />
+                                        
+                                        {/* Stat badge centered on bar */}
+                                        <div className="relative flex justify-center mb-2">
+                                            <motion.div
+                                                className={`inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r ${highlight.color} text-white text-xs font-bold shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
+                                                whileHover={{ scale: 1.05 }}
+                                                transition={{ duration: 0.2 }}
+                                            >
+                                                <span className="flex items-center gap-1">
+                                                    {highlight.stat} {highlight.stat === "Active" ? "Projects" : highlight.stat === "100+" ? "Students" : "Projects"}
+                                                </span>
+                                            </motion.div>
+                                        </div>
+                                        
+                                        {/* Enhanced bottom border accent */}
+                                        <motion.div
+                                            className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${highlight.color} opacity-30 group-hover:opacity-60 transition-opacity duration-300 rounded-full`}
+                                        />
+                                    </div>
+                                </div>
                             </motion.div>
                         ))}
                     </div>

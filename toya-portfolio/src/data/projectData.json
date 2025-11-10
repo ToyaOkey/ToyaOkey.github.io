@@ -4,35 +4,35 @@
     "description": "First data mining project to analyze the S&P 500 stock prices.",
     "imageUrl": "/images/stock_market.png",
     "projectUrl": "/s&p500view.html",
-    "techStack": ["Python", "Pandas", "NumPy", "Matplotlib", "Data Analysis"]
+    "techStack": ["Python", "Pandas", "NumPy", "Matplotlib", "Data Science"]
   },
   {
     "title": "Credit Card Prediction",
     "description": "Credit Card Analysis and Prediction using Machine Learning.",
     "imageUrl": "/images/credit_info.png",
     "projectUrl": "/credit_info.html",
-    "techStack": ["Python", "Scikit-learn", "Machine Learning", "Pandas", "Data Science"]
+    "techStack": ["Python", "Scikit-learn", "AI/ML", "Pandas", "Data Science"]
   },
   {
     "title": "Housing Price Prediction",
     "description": "Housing Price Prediction using Regression Models.",
     "imageUrl": "/images/house_price.png",
     "projectUrl": "/house_info.html",
-    "techStack": ["Python", "Regression", "Scikit-learn", "Data Visualization", "ML"]
+    "techStack": ["Python", "Regression", "Scikit-learn", "Data Visualization", "AI/ML", "Data Science"]
   },
   {
     "title": "College Major Cluster Analysis",
     "description": "Using Clustering to predict the outcome of different college majors.",
     "imageUrl": "/images/college_majors.png",
     "projectUrl": "college_majors.html",
-    "techStack": ["Python", "Clustering", "K-Means", "Data Mining", "Scikit-learn"]
+    "techStack": ["Python", "Clustering", "K-Means", "Data Science", "Scikit-learn"]
   },
   {
     "title": "Social Media Analysis - Group Project",
     "description": "Analyzing social media data to understand user behavior and trends.",
     "imageUrl": "/images/social_media.png",
     "projectUrl": "/social_media.html",
-    "techStack": ["Python", "Data Mining", "NLP", "Social Media Analytics", "Pandas"]
+    "techStack": ["Python", "Data Science", "NLP", "Social Media Analytics", "Pandas"]
   }
 
 ]

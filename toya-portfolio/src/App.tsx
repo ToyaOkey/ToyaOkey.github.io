@@ -8,6 +8,8 @@ import Contact from "./components/Contact.tsx";
 import Experience from "./components/Experience.tsx";
 import Education from "./components/Education.tsx";
 import Research from "./components/Research.tsx";
+import CountryGuessingGame from "./components/CountryGuessingGame.tsx";
+import HigherLowerGame from "./components/HigherLowerGame.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import ScrollProgress from "./components/ScrollProgress.tsx";
 import SectionDivider from "./components/SectionDivider.tsx";
@@ -36,6 +38,8 @@ function App() {
             </>
           } />
           <Route path="/research" element={<Research />} />
+          <Route path="/games/country-guessing" element={<CountryGuessingGame />} />
+          <Route path="/games/higher-lower" element={<HigherLowerGame />} />
         </Routes>
         <Footer />
         <ScrollToTop />

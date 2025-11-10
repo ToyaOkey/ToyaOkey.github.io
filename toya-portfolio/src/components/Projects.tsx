@@ -4,13 +4,15 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Link } from "react-scroll";
 import { FaRocket, FaUtensils, FaLeaf, FaGamepad, FaShieldAlt, FaBook, FaStore, FaSearch, FaTimes } from "react-icons/fa";
 import { LuMousePointerClick } from "react-icons/lu";
+import { SiReact, SiPython, SiJavascript, SiTypescript, SiNodedotjs, SiFastapi, SiTailwindcss, SiMongodb, SiPostgresql, SiPytest, SiScikitlearn, SiPandas, SiNumpy } from "react-icons/si";
+import { DiJava } from "react-icons/di";
 import projectData from "../data/projectData.json";
 import softwareProjects from "../data/softwareProjects.json";
 
 const Projects = () => {
     const [activeTab, setActiveTab] = useState<"research" | "software">("research");
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedTech, setSelectedTech] = useState<string | null>(null);
+    const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
     const [lightboxImage, setLightboxImage] = useState<string | null>(null);
     const ref = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({
@@ -68,6 +70,25 @@ const Projects = () => {
         FaStore: <FaStore className="text-4xl text-pink-500" />,
     };
 
+    // Technology icon mapping
+    const techIcons: Record<string, React.ReactElement> = {
+        "React": <SiReact className="text-lg" />,
+        "Python": <SiPython className="text-lg" />,
+        "JavaScript": <SiJavascript className="text-lg" />,
+        "TypeScript": <SiTypescript className="text-lg" />,
+        "Node.js": <SiNodedotjs className="text-lg" />,
+        "FastAPI": <SiFastapi className="text-lg" />,
+        "Tailwind CSS": <SiTailwindcss className="text-lg" />,
+        "MongoDB": <SiMongodb className="text-lg" />,
+        "SQL": <SiPostgresql className="text-lg" />,
+        "Pytest": <SiPytest className="text-lg" />,
+        "Scikit-learn": <SiScikitlearn className="text-lg" />,
+        "Pandas": <SiPandas className="text-lg" />,
+        "NumPy": <SiNumpy className="text-lg" />,
+        "Matplotlib": <FaBook className="text-lg" />,
+        "Java": <DiJava className="text-lg" />,
+    };
+
     // Get all unique tech stacks
     const allTechStacks = useMemo(() => {
         const techs = new Set<string>();
@@ -79,14 +100,23 @@ const Projects = () => {
         return Array.from(techs).sort();
     }, []);
 
+    // Toggle technology selection
+    const toggleTech = (tech: string) => {
+        setSelectedTechs(prev => 
+            prev.includes(tech) 
+                ? prev.filter(t => t !== tech)
+                : [...prev, tech]
+        );
+    };
+
     // Filter research projects
     const filteredResearchProjects = useMemo(() => {
         let filtered = projectData;
         
-        // Filter by tech stack
-        if (selectedTech) {
+        // Filter by tech stack (multiple selections - project must include ALL selected techs)
+        if (selectedTechs.length > 0) {
             filtered = filtered.filter((project) => 
-                project.techStack && project.techStack.includes(selectedTech)
+                project.techStack && selectedTechs.every(tech => project.techStack.includes(tech))
             );
         }
         
@@ -101,16 +131,16 @@ const Projects = () => {
         }
         
         return filtered;
-    }, [searchQuery, selectedTech]);
+    }, [searchQuery, selectedTechs]);
 
     // Filter software projects
     const filteredSoftwareProjects = useMemo(() => {
         let filtered = softwareProjects;
         
-        // Filter by tech stack
-        if (selectedTech) {
+        // Filter by tech stack (multiple selections - project must include ALL selected techs)
+        if (selectedTechs.length > 0) {
             filtered = filtered.filter((project) => 
-                project.techStack && project.techStack.includes(selectedTech)
+                project.techStack && selectedTechs.every(tech => project.techStack.includes(tech))
             );
         }
         
@@ -130,7 +160,7 @@ const Projects = () => {
         }
         
         return filtered;
-    }, [searchQuery, selectedTech]);
+    }, [searchQuery, selectedTechs]);
 
     return (
         <motion.section
@@ -179,7 +209,7 @@ const Projects = () => {
                         onClick={() => {
                             setActiveTab("research");
                             setSearchQuery("");
-                            setSelectedTech(null);
+                            setSelectedTechs([]);
                         }}
                         className={`px-6 py-2 text-base font-bold rounded-lg transition-all transform hover:scale-105 border-2 ${
                             activeTab === "research"
@@ -193,7 +223,7 @@ const Projects = () => {
                         onClick={() => {
                             setActiveTab("software");
                             setSearchQuery("");
-                            setSelectedTech(null);
+                            setSelectedTechs([]);
                         }}
                         className={`px-6 py-2 text-base font-bold rounded-lg transition-all transform hover:scale-105 border-2 ${
                             activeTab === "software"
@@ -205,7 +235,7 @@ const Projects = () => {
                     </button>
                 </motion.div>
 
-                {/* Tech Stack Filter */}
+                {/* Tech Stack Filter - Compact */}
                 {allTechStacks.length > 0 && (
                     <motion.div
                         className="mb-4 md:mb-6 px-4"
@@ -213,30 +243,67 @@ const Projects = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7, duration: 0.6 }}
                     >
-                        <p className="text-xs md:text-sm text-gray-600 mb-2 font-medium text-center md:text-left">Filter by Technology:</p>
-                        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                            {allTechStacks.map((tech) => (
-                                <button
-                                    key={tech}
-                                    onClick={() => setSelectedTech(selectedTech === tech ? null : tech)}
-                                    className={`px-2.5 md:px-3 py-1.5 md:py-1 text-xs font-semibold rounded-full transition-all transform hover:scale-105 active:scale-95 min-h-[36px] md:min-h-[32px] touch-manipulation ${
-                                        selectedTech === tech
-                                            ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md"
-                                            : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                                    }`}
+                        <div className="flex items-center justify-between mb-2">
+                            <p className="text-xs md:text-sm text-gray-600 font-medium">Filter by Technology:</p>
+                            {selectedTechs.length > 0 && (
+                                <motion.button
+                                    onClick={() => setSelectedTechs([])}
+                                    className="flex items-center gap-1 px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition-all transform hover:scale-105 active:scale-95 min-h-[32px] touch-manipulation"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
                                 >
-                                    {tech}
-                                </button>
-                            ))}
-                            {selectedTech && (
-                                <button
-                                    onClick={() => setSelectedTech(null)}
-                                    className="px-2.5 md:px-3 py-1.5 md:py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition-all transform hover:scale-105 active:scale-95 min-h-[36px] md:min-h-[32px] touch-manipulation"
-                                >
-                                    Clear Filter
-                                </button>
+                                    <FaTimes className="text-xs" />
+                                    Clear ({selectedTechs.length})
+                                </motion.button>
                             )}
                         </div>
+                        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                            {allTechStacks.map((tech) => {
+                                const isSelected = selectedTechs.includes(tech);
+                                return (
+                                    <motion.button
+                                        key={tech}
+                                        onClick={() => toggleTech(tech)}
+                                        className={`group relative flex items-center gap-1.5 px-2.5 md:px-3 py-1.5 md:py-1 text-xs font-semibold rounded-full transition-all transform hover:scale-105 active:scale-95 min-h-[36px] md:min-h-[32px] touch-manipulation ${
+                                            isSelected
+                                                ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md"
+                                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                                        }`}
+                                        whileHover={{ y: -2 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        {techIcons[tech] && (
+                                            <span className={isSelected ? "text-white" : "text-gray-600"}>
+                                                {techIcons[tech]}
+                                            </span>
+                                        )}
+                                        <span>{tech}</span>
+                                        {isSelected && (
+                                            <motion.span
+                                                className="ml-1 text-xs"
+                                                initial={{ scale: 0 }}
+                                                animate={{ scale: 1 }}
+                                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                            >
+                                                ✓
+                                            </motion.span>
+                                        )}
+                                    </motion.button>
+                                );
+                            })}
+                        </div>
+                        {selectedTechs.length > 0 && (
+                            <motion.p
+                                className="mt-2 text-xs text-gray-600 text-center"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            >
+                                Showing projects with {selectedTechs.length === 1 ? selectedTechs[0] : `all of: ${selectedTechs.join(", ")}`}
+                                {" "}({filteredResearchProjects.length} research + {filteredSoftwareProjects.length} software = {filteredResearchProjects.length + filteredSoftwareProjects.length} total)
+                            </motion.p>
+                        )}
                     </motion.div>
                 )}
 
@@ -269,7 +336,7 @@ const Projects = () => {
                 </motion.div>
 
                 {/* Research Projects */}
-                {activeTab === "research" && (
+                {(selectedTechs.length === 0 && activeTab === "research") && (
                     <>
                         {filteredResearchProjects.length === 0 ? (
                             <motion.div
@@ -311,7 +378,10 @@ const Projects = () => {
                                             </div>
                                         </div>
                                         <div className="p-6 text-left flex flex-col flex-grow">
-                                            <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+                                                <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">Research</span>
+                                            </div>
                                             <p className="text-base text-gray-700 mt-2 leading-relaxed flex-grow">{project.description}</p>
                                             
                                             {/* Tech Stack Badges */}
@@ -320,8 +390,12 @@ const Projects = () => {
                                                     {project.techStack.map((tech: string, techIndex: number) => (
                                                         <button
                                                             key={techIndex}
-                                                            onClick={() => setSelectedTech(tech)}
-                                                            className="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-purple-100 text-gray-800 border border-blue-200 hover:from-blue-200 hover:to-purple-200 transition-colors cursor-pointer"
+                                                            onClick={() => toggleTech(tech)}
+                                                            className={`px-3 py-1 text-xs font-semibold rounded-full border transition-colors cursor-pointer ${
+                                                                selectedTechs.includes(tech)
+                                                                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white border-transparent"
+                                                                    : "bg-gradient-to-r from-blue-100 to-purple-100 text-gray-800 border-blue-200 hover:from-blue-200 hover:to-purple-200"
+                                                            }`}
                                                         >
                                                             {tech}
                                                         </button>
@@ -352,7 +426,7 @@ const Projects = () => {
                 )}
 
                 {/* Software Projects */}
-                {activeTab === "software" && (
+                {(selectedTechs.length === 0 && activeTab === "software") && (
                     <>
                         {filteredSoftwareProjects.length === 0 ? (
                             <motion.div
@@ -372,8 +446,8 @@ const Projects = () => {
                                 transition={{ duration: 0.5 }}
                             >
                                 {filteredSoftwareProjects.map((project, index) => (
-                                    <motion.div
-                                        key={index}
+                        <motion.div
+                            key={index}
                                         className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col group border border-gray-200 hover:border-purple-400"
                                         initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0 }}
@@ -394,7 +468,10 @@ const Projects = () => {
                                             </motion.div>
                                         </div>
                                         <div className="p-6 text-left flex flex-col flex-grow">
-                                            <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                                            <div className="flex items-center gap-2 mb-3">
+                                                <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+                                                <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-purple-100 text-purple-700">Software</span>
+                                            </div>
                                             <ul className="text-gray-700 space-y-2 mb-4 pl-6 text-left flex-grow">
                                                 {project.description.map((desc: string, i: number) => (
                                                     <li key={i} className="text-base list-disc text-left leading-relaxed">{desc}</li>
@@ -407,8 +484,12 @@ const Projects = () => {
                                                     {project.techStack.map((tech: string, techIndex: number) => (
                                                         <button
                                                             key={techIndex}
-                                                            onClick={() => setSelectedTech(tech)}
-                                                            className="px-3 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-purple-100 to-pink-100 text-gray-800 border border-purple-200 hover:from-purple-200 hover:to-pink-200 transition-colors cursor-pointer"
+                                                            onClick={() => toggleTech(tech)}
+                                                            className={`px-3 py-1 text-xs font-semibold rounded-full border transition-colors cursor-pointer ${
+                                                                selectedTechs.includes(tech)
+                                                                    ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white border-transparent"
+                                                                    : "bg-gradient-to-r from-purple-100 to-pink-100 text-gray-800 border-purple-200 hover:from-purple-200 hover:to-pink-200"
+                                                            }`}
                                                         >
                                                             {tech}
                                                         </button>
@@ -434,6 +515,178 @@ const Projects = () => {
                             <p className="text-center text-gray-600 mt-4 text-sm">
                                 Showing {filteredSoftwareProjects.length} of {softwareProjects.length} software projects
                             </p>
+                        )}
+                    </>
+                )}
+
+                {/* Combined View - When Technology Filter is Active */}
+                {selectedTechs.length > 0 && (
+                    <>
+                        {(filteredResearchProjects.length === 0 && filteredSoftwareProjects.length === 0) ? (
+                            <motion.div
+                                className="text-center py-12"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <p className="text-xl text-gray-600 mb-2">No projects found</p>
+                                <p className="text-gray-500">No projects use {selectedTechs.length === 1 ? selectedTechs[0] : "all selected technologies"}</p>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                className="space-y-8"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                {/* Research Projects Section */}
+                                {filteredResearchProjects.length > 0 && (
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-800 mb-4 px-4 flex items-center gap-2">
+                                            <span className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"></span>
+                                            Research Projects ({filteredResearchProjects.length})
+                                        </h3>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 justify-center px-4 md:px-0">
+                                            {filteredResearchProjects.map((project, index) => (
+                                                <motion.div
+                                                    key={`research-${index}`}
+                                                    className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col group border border-gray-200 hover:border-blue-400"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                                                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                                                    whileHover={{ y: -5 }}
+                                                >
+                                                    <div className="relative overflow-hidden">
+                                                        <img 
+                                                            src={project.imageUrl} 
+                                                            alt={project.title} 
+                                                            onClick={() => setLightboxImage(project.imageUrl)}
+                                                            loading="lazy"
+                                                            className="w-full h-56 object-contain rounded-t-lg transition-transform duration-500 group-hover:scale-110 cursor-pointer" 
+                                                        />
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-4 cursor-pointer" onClick={() => setLightboxImage(project.imageUrl)}>
+                                                            <span className="text-white font-semibold text-lg">Click to View Full Size</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="p-6 text-left flex flex-col flex-grow">
+                                                        <div className="flex items-center gap-2 mb-2">
+                                                            <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+                                                            <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">Research</span>
+                                                        </div>
+                                                        <p className="text-base text-gray-700 mt-2 leading-relaxed flex-grow">{project.description}</p>
+                                                        
+                                                        {/* Tech Stack Badges */}
+                                                        {project.techStack && project.techStack.length > 0 && (
+                                                            <div className="mt-4 mb-4 flex flex-wrap gap-2">
+                                                                {project.techStack.map((tech: string, techIndex: number) => (
+                                                                    <button
+                                                                        key={techIndex}
+                                                                        onClick={() => toggleTech(tech)}
+                                                                        className={`px-3 py-1 text-xs font-semibold rounded-full border transition-colors cursor-pointer ${
+                                                                            selectedTechs.includes(tech)
+                                                                                ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white border-transparent"
+                                                                                : "bg-gradient-to-r from-blue-100 to-purple-100 text-gray-800 border-blue-200 hover:from-blue-200 hover:to-purple-200"
+                                                                        }`}
+                                                                    >
+                                                                        {tech}
+                                                                    </button>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                        
+                                <a
+                                    href={project.projectUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                                            className="mt-4 inline-flex items-center px-4 py-2 text-sm font-bold rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white transition transform hover:scale-105 hover:shadow-lg"
+                                                            style={{ color: '#ffffff' }}
+                                >
+                                                            View Project <LuMousePointerClick className="inline w-4 h-4 ml-2 text-white" />
+                                </a>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+                                    </div>
+                                )}
+
+                                {/* Software Projects Section */}
+                                {filteredSoftwareProjects.length > 0 && (
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-800 mb-4 px-4 flex items-center gap-2">
+                                            <span className="w-1 h-6 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></span>
+                                            Software Projects ({filteredSoftwareProjects.length})
+                                        </h3>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 justify-center px-4 md:px-0">
+                                            {filteredSoftwareProjects.map((project, index) => (
+                                                <motion.div
+                                                    key={`software-${index}`}
+                                                    className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl flex flex-col group border border-gray-200 hover:border-purple-400"
+                                                    initial={{ opacity: 0, y: 30 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                                                    viewport={{ once: true, amount: 0.2 }}
+                                                    whileHover={{ y: -5 }}
+                                                >
+                                                    <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-8 flex items-center justify-center relative overflow-hidden">
+                                                        <motion.div
+                                                            className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                                        />
+                                                        <motion.div
+                                                            whileHover={{ scale: 1.2, rotate: 5 }}
+                                                            transition={{ duration: 0.3 }}
+                                                            className="relative z-10"
+                                                        >
+                                                            {iconMap[project.icon] || <FaRocket className="text-4xl text-purple-500" />}
+                                                        </motion.div>
+                                                    </div>
+                                                    <div className="p-6 text-left flex flex-col flex-grow">
+                                                        <div className="flex items-center gap-2 mb-3">
+                                                            <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+                                                            <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-purple-100 text-purple-700">Software</span>
+                                                        </div>
+                                                        <ul className="text-gray-700 space-y-2 mb-4 pl-6 text-left flex-grow">
+                                                            {project.description.map((desc: string, i: number) => (
+                                                                <li key={i} className="text-base list-disc text-left leading-relaxed">{desc}</li>
+                                                            ))}
+                                                        </ul>
+                                                        
+                                                        {/* Tech Stack Badges */}
+                                                        {project.techStack && project.techStack.length > 0 && (
+                                                            <div className="mt-4 mb-4 flex flex-wrap gap-2">
+                                                                {project.techStack.map((tech: string, techIndex: number) => (
+                                                                    <button
+                                                                        key={techIndex}
+                                                                        onClick={() => toggleTech(tech)}
+                                                                        className={`px-3 py-1 text-xs font-semibold rounded-full border transition-colors cursor-pointer ${
+                                                                            selectedTechs.includes(tech)
+                                                                                ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white border-transparent"
+                                                                                : "bg-gradient-to-r from-purple-100 to-pink-100 text-gray-800 border-purple-200 hover:from-purple-200 hover:to-pink-200"
+                                                                        }`}
+                                                                    >
+                                                                        {tech}
+                                                                    </button>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                        
+                                                        <a
+                                                            href={project.projectUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="mt-4 inline-flex items-center px-4 py-2 text-sm font-bold rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white transition transform hover:scale-105 hover:shadow-lg"
+                                                            style={{ color: '#ffffff' }}
+                                                        >
+                                                            View Project <LuMousePointerClick className="inline w-4 h-4 ml-2 text-white" />
+                                                        </a>
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </motion.div>
                         )}
                     </>
                 )}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import { Link as RouterLink, useLocation } from "react-router-dom";
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp, FaHome, FaUser, FaBriefcase, FaProjectDiagram, FaAddressCard } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp, FaHome, FaUser, FaBriefcase, FaProjectDiagram, FaAddressCard, FaGamepad } from "react-icons/fa";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -22,7 +22,7 @@ const Footer = () => {
             <div className="h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
             
             <div className="max-w-6xl mx-auto px-6 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                     {/* Brand Section */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -144,6 +144,39 @@ const Footer = () => {
                                 </a>
                             </div>
                         </div>
+                    </motion.div>
+
+                    {/* Games Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        viewport={{ once: true }}
+                    >
+                        <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                            <FaGamepad className="text-purple-400" />
+                            Fun Games
+                        </h4>
+                        <ul className="space-y-2">
+                            <li>
+                                <RouterLink
+                                    to="/games/country-guessing"
+                                    className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition cursor-pointer group"
+                                >
+                                    <span className="group-hover:translate-x-1 transition-transform">🌍</span>
+                                    Country Guessing
+                                </RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink
+                                    to="/games/higher-lower"
+                                    className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition cursor-pointer group"
+                                >
+                                    <span className="group-hover:translate-x-1 transition-transform">📊</span>
+                                    Higher or Lower
+                                </RouterLink>
+                            </li>
+                        </ul>
                     </motion.div>
                 </div>
 
