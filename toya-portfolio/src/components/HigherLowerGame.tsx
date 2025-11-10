@@ -121,9 +121,9 @@ const HigherLowerGame = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white pt-20">
-            {/* Game Header - Below Navbar */}
-            <div className="bg-gray-900/50 backdrop-blur-sm border-b border-gray-800">
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+            {/* Game Header */}
+            <div className="bg-gray-900/95 backdrop-blur-md border-b border-gray-800 sticky top-0 z-40">
                 <div className="max-w-4xl mx-auto px-4 py-4">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text text-center sm:text-left">
@@ -262,6 +262,25 @@ const HigherLowerGame = () => {
                         </p>
                     </motion.div>
                 )}
+            </div>
+
+            {/* Back to Home Button */}
+            <div className="max-w-4xl mx-auto px-4 py-8">
+                <motion.div
+                    className="flex justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                >
+                    <motion.button
+                        onClick={() => navigate('/')}
+                        className="flex items-center gap-2 text-gray-300 hover:text-white transition px-6 py-3 rounded-lg hover:bg-gray-800 border border-gray-700 hover:border-gray-600"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <FaHome className="text-lg" /> Back to Home
+                    </motion.button>
+                </motion.div>
             </div>
         </div>
     );

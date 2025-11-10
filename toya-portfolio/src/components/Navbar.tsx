@@ -12,6 +12,7 @@ const Navbar = () => {
 
     const location = useLocation();
     const isResearchPage = location.pathname === '/research';
+    const isGamePage = location.pathname.startsWith('/games/');
     
     const navItems = [
         { name: "home", label: "Home", icon: <FaHome />, route: "/" },
@@ -40,9 +41,13 @@ const Navbar = () => {
 
             setActiveSection(currentSection);
 
-            // Sticky Navbar Logic
-            if (window.scrollY > 100) {
-                setIsSticky(true);
+            // Sticky Navbar Logic - Disabled for game pages
+            if (!isGamePage) {
+                if (window.scrollY > 100) {
+                    setIsSticky(true);
+                } else {
+                    setIsSticky(false);
+                }
             } else {
                 setIsSticky(false);
             }
@@ -50,7 +55,7 @@ const Navbar = () => {
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [isGamePage]);
 
     // Close mobile menu when clicking outside
     useEffect(() => {
@@ -84,9 +89,11 @@ const Navbar = () => {
             </AnimatePresence>
 
             <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
-                isSticky 
-                    ? "bg-gray-900/95 backdrop-blur-md shadow-xl py-3 border-b border-gray-800/50" 
-                    : "bg-transparent py-6"
+                isGamePage
+                    ? "bg-gray-900/95 backdrop-blur-md shadow-xl py-3 border-b border-gray-800/50"
+                    : isSticky 
+                        ? "bg-gray-900/95 backdrop-blur-md shadow-xl py-3 border-b border-gray-800/50" 
+                        : "bg-transparent py-6"
             }`}>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center">
                       {/* Logo with enhanced hover effect */}
