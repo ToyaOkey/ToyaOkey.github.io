@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { FaCheckCircle, FaTimesCircle, FaRedo } from "react-icons/fa";
 
 interface Country {
@@ -27,7 +26,6 @@ const CountryGuessingGame = () => {
     const [round, setRound] = useState(1);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [isLoading, setIsLoading] = useState(true);
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetchCountries();

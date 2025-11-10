@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
 import { FaHome, FaRocket, FaExclamationTriangle } from "react-icons/fa";
 
 const NotFound = () => {
@@ -83,24 +83,19 @@ const NotFound = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
                 >
-                    <Link
-                        to="home"
-                        smooth={true}
-                        duration={800}
+                    <RouterLink
+                        to="/"
                         className="inline-flex items-center px-6 py-3 text-base font-bold rounded-lg shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white transition transform hover:scale-105 hover:shadow-xl"
                         style={{ color: '#ffffff' }}
                     >
                         <FaHome className="mr-2 text-white" /> Go Home
-                    </Link>
-                    <Link
-                        to="projects"
-                        smooth={true}
-                        duration={800}
-                        offset={-50}
+                    </RouterLink>
+                    <RouterLink
+                        to="/"
                         className="inline-flex items-center px-6 py-3 text-base font-bold rounded-lg shadow-lg border-2 border-white text-white transition transform hover:scale-105 hover:shadow-xl hover:bg-white hover:text-gray-900"
                     >
                         <FaRocket className="mr-2" /> View Projects
-                    </Link>
+                    </RouterLink>
                 </motion.div>
 
                 {/* Decorative Elements */}
