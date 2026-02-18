@@ -77,8 +77,8 @@ export const useGitHubStats = (): GitHubStats => {
                         });
 
                         contributions = Math.max(
-                            contributionDays.size * 3, // Average 3 contributions per active day
-                            contributionEvents.length // Or use total events as fallback
+                            contributionDays.size * 3, 
+                            contributionEvents.length
                         );
                     }
                 } catch (error) {
